@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Acceso Denegado";
+
+    bool? esFemenino = null;
+    if (User?.Identity?.IsAuthenticated ?? false)
+    {
+        var claim = User.FindFirst("EsFemenino");
+        if (claim != null && bool.TryParse(claim.Value, out bool valor))
+        {
+            esFemenino = valor;
+        }
+    }
+
+    string mensaje = esFemenino switch
+    {
+        true => "Acceso denegado: esta sección es solo para varones.",
+        false => "Acceso denegado: esta sección es solo para mujeres.",
+        _ => "Acceso denegado: no tienes permisos para acceder a esta sección."
+    };
+}
+
+<div class="mt-5">
+    <div class="alert alert-danger border border-danger shadow-sm p-4 text-center">
+        <h1 class="text-danger mb-3">Acceso Denegado</h1>
+        <p class="lead">@mensaje</p>
+        <hr />
+        <p class="text-muted">
+            Si crees que esto es un error, contacta con el administrador del sistema.
+        </p>
+        <a class="btn btn-primary mt-3" asp-controller="Home" asp-action="Index">
+            Volver al Inicio
+        </a>
+    </div>
+</div>

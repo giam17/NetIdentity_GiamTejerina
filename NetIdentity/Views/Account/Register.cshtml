@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Registrarse";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-light">
+                <h2 class="mb-0 text-center">Crear Cuenta</h2>
+            </div>
+            <div class="card-body">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <form method="post" asp-action="Register">
+                    <div class="mb-3">
+                        <label for="nombreCompleto" class="form-label">Nombre Completo</label>
+                        <input type="text" class="form-control" id="nombreCompleto" name="nombreCompleto" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="email" name="email" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" required />
+                        <small class="form-text text-muted">
+                            Solo menores de 18 años pueden acceder a Juegos y Actividades
+                        </small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label d-block">Género</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="esFemenino" value="false" checked />
+                            <label class="form-check-label" for="esFemenino">Varón</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="esFemenino" value="true" />
+                            <label class="form-check-label" for="esFemenino">Mujer</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="password" name="password" required />
+                        <small class="form-text text-muted">
+                            Mínimo 6 caracteres, incluir mayúsculas, minúsculas y números
+                        </small>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">Registrarse</button>
+                </form>
+
+                <hr />
+
+                <p class="text-center">
+                    ¿Ya tienes cuenta? <a asp-action="Login" class="link-primary">Inicia sesión aquí</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
